@@ -86,7 +86,7 @@ export async function GET(req: Request) {
     })
     const sessions = sessionsRes.map(({result}, i) => ({
       sessionId: sessionIds[i],
-      ...parseSession(result as unknown as [number, number, bigint])
+      ...parseSession(result as unknown as [number, number, bigint, bigint])
     }))
 
     return NextResponse.json({totalSessions: parseInt(totalSessions.toString()), sessions}, { status: 200 });
