@@ -46,6 +46,12 @@ export default function App() {
               </WalletDropdown>
           </Wallet>
       </div>
+      {/* Total Sessions Count */}
+      <div className="mb-8 text-center">
+        <div className="text-4xl font-bold">{data?.totalSessions ?? 0}</div>
+        <div className="text-sm text-gray-500 dark:text-gray-400">Total Sessions Created</div>
+      </div>
+
       {!data?.sessions?.length ? (
         // If no sessions have been created, display message
         <div className="text-center">No sessions created. <br /> Call POST /sessions or transact directly onchain. </div>
