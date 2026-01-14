@@ -9,7 +9,7 @@ import { parseSession } from '@/app/lib/utils';
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { start, end } = body;
+    const { start, end, maxAttendees = 0 } = body;
 
     if (!start || !end) {
       return NextResponse.json({ error: 'Missing start or end time' }, { status: 400 });
@@ -30,13 +30,13 @@ export async function POST(req: Request) {
       })
 
     // Send a transaction to create a new session
-    // Writes Attendance.createSession(start, end)
+    // Writes Attendance.createSession(start, end, maxAttendees)
     const transactionHash = await walletClient.sendTransaction({
       to: attendanceContract,
       data: encodeFunctionData({
         abi: AttendanceAbi,
         functionName: "createSession",
-        args: [start, end]
+        args: [start, end, maxAttendees]
       })
     })
 

@@ -1,7 +1,7 @@
 import { Address } from "viem";
 
 export const attendanceContract =
-  "0x864cdCc0A0335e37359d04712436FB5369871631" as Address;
+  "0x29Bab318Dd0f1c93B7577D3357D98f5eCBef3Dd8" as Address;
 export const AttendanceAbi = [
   {
     inputs: [{ internalType: "address", name: "owner_", type: "address" }],
@@ -43,6 +43,14 @@ export const AttendanceAbi = [
   {
     inputs: [{ internalType: "uint256", name: "sessionId", type: "uint256" }],
     name: "SessionNotActive",
+    type: "error",
+  },
+  {
+    inputs: [
+      { internalType: "uint256", name: "sessionId", type: "uint256" },
+      { internalType: "uint256", name: "maxAttendees", type: "uint256" },
+    ],
+    name: "SessionFull",
     type: "error",
   },
   {
@@ -90,6 +98,7 @@ export const AttendanceAbi = [
     inputs: [
       { internalType: "uint48", name: "start", type: "uint48" },
       { internalType: "uint48", name: "end", type: "uint48" },
+      { internalType: "uint256", name: "maxAttendees", type: "uint256" },
     ],
     name: "createSession",
     outputs: [{ internalType: "uint256", name: "sessionId", type: "uint256" }],
@@ -127,6 +136,7 @@ export const AttendanceAbi = [
       { internalType: "uint48", name: "start", type: "uint48" },
       { internalType: "uint48", name: "end", type: "uint48" },
       { internalType: "uint256", name: "totalAttended", type: "uint256" },
+      { internalType: "uint256", name: "maxAttendees", type: "uint256" },
     ],
     stateMutability: "view",
     type: "function",
